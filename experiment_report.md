@@ -17,9 +17,9 @@ Chạy `agent_simulation.py` với 2 bộ dữ liệu và ghi lại kết quả:
 
 ---
 
-## 2. Phân tích & nhận xét
+## 2. Phan tich & nhan xet
 
-### Tại sao Agent trả lời sai khi dùng Garbage Data?
+### Tai sao Agent tra loi sai sau khi dung Gaarbage Data?
 
 Khi dùng Garbage Data, Agent trả lời sai vì dữ liệu đầu vào có nhiều lỗi chất lượng. Ví dụ `Nuclear Reactor` có giá `999999`, đây là outlier quá lớn nên logic tìm sản phẩm electronics giá cao nhất sẽ chọn nó thay vì sản phẩm hợp lý. Ngoài ra dữ liệu rác còn có duplicate ID, sai kiểu dữ liệu như `ten dollars`, giá bằng 0 và giá trị null. Những lỗi này làm Agent đưa ra kết quả không đáng tin cậy dù prompt có viết tốt.
 
