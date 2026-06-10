@@ -1,47 +1,51 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=24112742&assignment_repo_type=AssignmentRepo)
 # Day 10 Lab: Data Pipeline & Data Observability
 
-**Student Email:** email@example.com
-**Name:** (Dien ten cua ban)
+**Student Email:** 26ai.dungpq2@vinuni.edu.vn
+**Name:** Phạm Quang Dũng
 
 ---
 
-## Mo ta
+## Mô tả
 
-(Mo ta ngan gon bai lab va nhung gi ban da lam)
+Bài lab xây dựng ETL pipeline cho `raw_data.json`: extract dữ liệu, validate record lỗi, transform category và discounted price, sau đó load kết quả ra `processed_data.csv`. Em cũng chạy agent simulation để so sánh Clean Data và Garbage Data.
 
 ---
 
-## Cach chay (How to Run)
+## Cách chạy (How to Run)
 
 ### Prerequisites
 ```bash
 pip install pandas
 ```
 
-### Chay ETL Pipeline
+### Chạy ETL Pipeline
 ```bash
 python solution.py
 ```
 
-### Chay Agent Simulation (Stress Test)
+### Chạy Agent Simulation (Stress Test)
 ```bash
-# Mo ta cach ban chay thi nghiem Clean vs Garbage data
+python agent_simulation.py
 ```
 
 ---
 
-## Cau truc thu muc
+## Cấu trúc thư mục
 
 ```
 ├── solution.py              # ETL Pipeline script
-├── processed_data.csv       # Output cua pipeline
-├── experiment_report.md     # Bao cao thi nghiem
-└── README.md                # File nay
+├── processed_data.csv       # Output của pipeline
+├── experiment_report.md     # Báo cáo thí nghiệm
+└── README.md                # File này
 ```
 
 ---
 
-## Ket qua
+## Kết quả
 
-(Tom tat ket qua: bao nhieu records da xu ly, bao nhieu bi loai, v.v.)
+Pipeline đọc `raw_data.json`, giữ lại 3 records hợp lệ và loại 2 records lỗi. Ví dụ 2 loại records khác nhau:
+
+- `id = 3`: Price <= 0
+- `id = 4`: Missing Category
+
+Sau transform, 3 records được lưu vào `processed_data.csv`. Khi chạy agent simulation, Clean Data trả về `Laptop at $1200`, còn Garbage Data trả về `Nuclear Reactor at $999999` do outlier.

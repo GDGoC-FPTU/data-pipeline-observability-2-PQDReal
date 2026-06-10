@@ -1,35 +1,32 @@
 # Experiment Report: Data Quality Impact on AI Agent
 
-**Student ID:** AI20K-XXXX
-**Name:** (Dien ten cua ban)
-**Date:** (Dien ngay thuc hien)
+**Student ID:** AI20K-2A202600703
+**Name:** Phạm Quang Dũng
+**Date:** 10/06/2026
 
 ---
 
-## 1. Ket qua thi nghiem
+## 1. Kết quả thí nghiệm
 
-Chay `agent_simulation.py` voi 2 bo du lieu va ghi lai ket qua:
+Chạy `agent_simulation.py` với 2 bộ dữ liệu và ghi lại kết quả:
 
 | Scenario | Agent Response | Accuracy (1-10) | Notes |
 |----------|----------------|-----------------|-------|
-| Clean Data (`processed_data.csv`) | (Ghi cau tra loi cua Agent) | | |
-| Garbage Data (`garbage_data.csv`) | (Ghi cau tra loi cua Agent) | | |
+| Clean Data (`processed_data.csv`) | Agent: Based on my data, the best choice is Laptop at $1200. | 9 | Dữ liệu đã được validate và transform, nên câu trả lời hợp lý. |
+| Garbage Data (`garbage_data.csv`) | Agent: Based on my data, the best choice is Nuclear Reactor at $999999. | 2 | Dữ liệu rác có outlier rất lớn, làm Agent chọn sai sản phẩm. |
 
 ---
 
-## 2. Phan tich & nhan xet
+## 2. Phân tích & nhận xét
 
-### Tai sao Agent tra loi sai khi dung Garbage Data?
+### Tại sao Agent trả lời sai khi dùng Garbage Data?
 
-(Viet nhan xet cua ban o day — it nhat 50 tu)
-
-(Hay phan tich cac van de nhu Duplicate IDs, wrong data types, outliers, null values
-va giai thich tai sao chung anh huong den ket qua cua Agent.)
+Khi dùng Garbage Data, Agent trả lời sai vì dữ liệu đầu vào có nhiều lỗi chất lượng. Ví dụ `Nuclear Reactor` có giá `999999`, đây là outlier quá lớn nên logic tìm sản phẩm electronics giá cao nhất sẽ chọn nó thay vì sản phẩm hợp lý. Ngoài ra dữ liệu rác còn có duplicate ID, sai kiểu dữ liệu như `ten dollars`, giá bằng 0 và giá trị null. Những lỗi này làm Agent đưa ra kết quả không đáng tin cậy dù prompt có viết tốt.
 
 ---
 
-## 3. Ket luan
+## 3. Kết luận
 
-**Quality Data > Quality Prompt?** (Dong y hay khong? Giai thich ngan gon.)
+**Quality Data > Quality Prompt?** (Đồng ý hay không? Giải thích ngắn gọn.)
 
-(Viet ket luan cua ban o day)
+Đồng ý. Prompt tốt không thể sửa được việc Agent đọc từ dữ liệu sai. Cần làm sạch, validate và transform dữ liệu trước khi đưa vào pipeline AI.
